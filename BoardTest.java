@@ -1,3 +1,9 @@
+/**
+	This class was made for us by our professor for testing purposes.
+	NOT my own work.
+**/
+
+
 import java.io.*;
 
 public class BoardTest {
