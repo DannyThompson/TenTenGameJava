@@ -137,8 +137,9 @@ public class PlayTenTen{
 	    //Multiple checks are placed through here to check if the piece array is empty.
 	    while( !b.gameOver( p ) ){
 
-		if(isEmpty(p))
+		if(isEmpty(p)) {
 		    p = getPieces();
+		}
 
 		//Print the message to tell the user to choose to rotate or place a piece.
 		printMessages(1);
@@ -147,21 +148,21 @@ public class PlayTenTen{
 		char in = scan.next().charAt(0);
 		
 		//If User wants to rotate;
-		 if(in == 'a'){
+		 if(in == 'a') {
 		    printMessages(2);
 		    int piece = scan.nextInt();
 		    int degrees = scan.nextInt();
 
-		    for(int j = 0; j < p.length; j++){
+		    for(int j = 0; j < p.length; j++) {
 			if(p[j] != null)
 			    p[j].printPiece();
 		    }
 
 		    //Rotate the Piece by factors of 90.
-		    for(int i = 0; i < degrees/90; i++){
-			if(p[piece - 1] != null)
-			   p[piece - 1] = p[piece - 1].rotateClockwise();
-			   }
+		    for(int i = 0; i < degrees/90; i++) {
+				if(p[piece - 1] != null)
+			   		p[piece - 1] = p[piece - 1].rotateClockwise();
+			 }
 
 		    //Reprints the pieces since one was rotated so the user can see the new orientation.
 		    System.out.println("");
@@ -169,34 +170,32 @@ public class PlayTenTen{
 		    System.out.println("");
 
 		    //Reprint the pieces after one's been rotated.
-		    for(int j = 0; j < p.length; j++){
-			if(p[j] != null){
-			    System.out.println(j + 1);
-			    p[j].printPiece();
-			    System.out.println("");
-			}
+		    for(int j = 0; j < p.length; j++) {
+				if(p[j] != null) {
+			    	System.out.println(j + 1);
+			    	p[j].printPiece();
+			    	System.out.println("");
+				}
 		    }
-		 }
-
-		 //If the user wants to place a piece.
-		 else if( in == 'b' ){
+		 } else if( in == 'b' ) { //If the user wants to place a piece.
 		    printMessages(3);
 
 		    //Next 3 inputs are the following values.
 		    int row = scan.nextInt();
 		    int col = scan.nextInt();
-		    int piecey = scan.nextInt();
+		    int pieceNumber = scan.nextInt();
 		     
-		    if( b.canPlace(row, col, p[piecey - 1]) ){
-			b.place(row, col, p[piecey - 1]);
-			p[piecey - 1] = null;
-		    }
-		    else
-			printMessages(4);
+		    if( pieceNumber > 0 && b.canPlace(row, col, p[pieceNumber - 1]) ) {
+				b.place(row, col, p[pieceNumber - 1]);
+				p[pieceNumber - 1] = null;
+		    } else {
+				printMessages(4);
+			}
 
 		    //Check if the last piece placed made the piece array empty.
-		    if(isEmpty(p))
-			p = getPieces();
+		    if(isEmpty(p)) {
+				p = getPieces();
+		    }
 		    
 		    System.out.println("");
 		    b.printBoard();
@@ -204,20 +203,19 @@ public class PlayTenTen{
 		    
 		    //Reprint the current pieces left after placing one.
 		     for(int j = 0; j < p.length; j++){
-			 if(p[j] != null){
-			     System.out.println(j + 1);
-			     p[j].printPiece();
-			     System.out.println("");
-			 }
+			 	if(p[j] != null){
+			   	  	System.out.println(j + 1);
+			    	p[j].printPiece();
+			     	System.out.println("");
+			     }
 		     }
 		     
-		     if(isEmpty(p))
-			 p = getPieces();
-		 }
-
-		 //Print an error message if A or B aren't entered.
-		 else
+		     if(isEmpty(p)){
+			 	p = getPieces();
+			}
+		 } else { //Print an error message if A or B aren't entered
 		     printMessages(5);
+		 }
 	    
 		 //Print the current score
 		System.out.println("Score: " + b.score);
@@ -235,6 +233,6 @@ public class PlayTenTen{
 	catch(Exception e){
 	    System.out.println(e);
 	}
-    }
+  }
 }
     
